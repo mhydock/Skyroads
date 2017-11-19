@@ -1,4 +1,6 @@
 /bin
+/build
+/.gradle
 
 # Compiled class file
 *.class
