@@ -9,25 +9,20 @@
 //						functionality, such as a gameloop, frame limiting, etc.
 //==============================================================================
 
-package com.gamelib.core;
-
-import org.lwjgl.Sys;
-import org.lwjgl.glfw.*;
-import org.lwjgl.opengl.*;
+package com.asymptote.gamelib.core;
 
 import java.nio.ByteBuffer;
- 
 
-
-
-
+import org.lwjgl.Version;
+import org.lwjgl.glfw.*;
+import org.lwjgl.opengl.*;
+import org.lwjgl.system.*;
 
 import static org.lwjgl.glfw.Callbacks.*;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.system.MemoryUtil.*;
 
-import com.gamelib.core.Clock;
+import com.asymptote.gamelib.core.Clock;
 
 public abstract class GameWindow
 {
@@ -66,8 +61,8 @@ public abstract class GameWindow
     private GLFWCursorPosCallback cursorCallback;
     private GLFWMouseButtonCallback mouseCallback;
     private GLFWWindowSizeCallback resizeCallback;
-    private GLFWErrorCallback errorCallback;
- 
+    private Callback debugProc;
+    
     public GameWindow()
     {        
     }
@@ -79,7 +74,7 @@ public abstract class GameWindow
     }
     
     public void run() {
-        System.out.println("Hello LWJGL " + Sys.getVersion() + "!");
+        System.out.println("Hello LWJGL " + Version.getVersion() + "!");
  
         try
         {
@@ -98,19 +93,19 @@ public abstract class GameWindow
         }
         finally
         {
-            // Terminate GLFW and release the GLFWerrorfun
-            glfwTerminate();
-            errorCallback.release();
+            try {
+                destroy();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
  
     private void initOpenGL() {
-        // Setup an error callback. The default implementation
-        // will print the error message in System.err.
-        glfwSetErrorCallback(errorCallback = errorCallbackPrint(System.err));
- 
+        GLFWErrorCallback.createPrint().set();
+        
         // Initialize GLFW. Most GLFW functions will not work before doing this.
-        if ( glfwInit() != GL11.GL_TRUE )
+        if (!glfwInit())
             throw new IllegalStateException("Unable to initialize GLFW");
  
         // Configure our window
@@ -126,20 +121,21 @@ public abstract class GameWindow
             throw new RuntimeException("Failed to create the GLFW window"); 
  
         // Get the resolution of the primary monitor
-        ByteBuffer vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+        GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+
         // Center our window
         glfwSetWindowPos(
             window,
-            (GLFWvidmode.width(vidmode) - width) / 2,
-            (GLFWvidmode.height(vidmode) - height) / 2
+            (vidmode.width() - width) / 2,
+            (vidmode.height() - height) / 2
         );
  
         // Make the OpenGL context current
         glfwMakeContextCurrent(window);
+        GL.createCapabilities();
+        
         // Enable v-sync
         glfwSwapInterval(1);
-        
-        GLContext.createFromCurrent();        
     }
 	
     private void initCallbacks()
@@ -183,8 +179,21 @@ public abstract class GameWindow
                 resizeCallback(width, height);                
             }
         });
+
+        debugProc = GLUtil.setupDebugMessageCallback();        
     }
     
+    private void destroy() {
+        if (debugProc != null) {
+            debugProc.free();
+        }
+
+        glfwFreeCallbacks(window);
+        glfwDestroyWindow(window);
+        glfwTerminate();
+        glfwSetErrorCallback(null).free();
+    }
+
     protected abstract void init();
     
     protected abstract void update(double delta);
@@ -216,7 +225,7 @@ public abstract class GameWindow
 		running = true;
 		
 		String title = this.title;
-		while (glfwWindowShouldClose(window) == GL_FALSE && running)
+		while (!glfwWindowShouldClose(window) && running)
 		{
 			Clock.update();
 			

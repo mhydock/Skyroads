@@ -1,10 +1,10 @@
-package com.gamelib.primitives;
+package com.asymptote.gamelib.primitives;
 
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;
 import static java.lang.Math.toRadians;
 
-import com.gamelib.core.Shape;
+import com.asymptote.gamelib.core.Shape;
 
 public abstract class Circular extends Shape
 {

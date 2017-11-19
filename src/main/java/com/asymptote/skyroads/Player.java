@@ -1,4 +1,4 @@
-package skyroads;
+package com.asymptote.skyroads;
 
 public class Player
 {

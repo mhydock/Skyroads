@@ -1,4 +1,4 @@
-package skyroads;
+package com.asymptote.skyroads;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-import com.gamelib.primitives.Cube;
+import com.asymptote.gamelib.primitives.Cube;
 
 public class Level
 {

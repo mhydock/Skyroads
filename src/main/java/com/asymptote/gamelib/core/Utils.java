@@ -8,7 +8,7 @@
 // File description:	A collection of useful static methods.
 //==============================================================================
 
-package com.gamelib.core;
+package com.asymptote.gamelib.core;
 
 import org.lwjgl.opengl.GL11;
 

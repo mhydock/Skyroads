@@ -1,14 +1,14 @@
-package skyroads;
+package com.asymptote.skyroads;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.gamelib.core.GameObject;
-import com.gamelib.core.Shader;
-import com.gamelib.core.ShaderProgram;
-import com.gamelib.core.Shape;
-import com.gamelib.primitives.Cube;
-import com.gamelib.primitives.PointCloud;
+import com.asymptote.gamelib.core.GameObject;
+import com.asymptote.gamelib.core.Shader;
+import com.asymptote.gamelib.core.ShaderProgram;
+import com.asymptote.gamelib.core.Shape;
+import com.asymptote.gamelib.primitives.Cube;
+import com.asymptote.gamelib.primitives.PointCloud;
 
 public class Ship extends GameObject
 {

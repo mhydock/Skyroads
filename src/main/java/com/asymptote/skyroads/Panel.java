@@ -1,6 +1,6 @@
-package skyroads;
+package com.asymptote.skyroads;
 
-import com.gamelib.core.Shape;
+import com.asymptote.gamelib.core.Shape;
 
 public class Panel extends Shape
 {

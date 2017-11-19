@@ -10,7 +10,7 @@
 //						load and render vertex data.
 //==============================================================================
 
-package com.gamelib.core;
+package com.asymptote.gamelib.core;
 
 import static java.lang.Math.acos;
 import static java.lang.Math.cos;

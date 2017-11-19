@@ -7,17 +7,17 @@ import org.lwjgl.glfw.GLFW;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
-import com.gamelib.core.GameWindow;
-import com.gamelib.core.Camera;
-import com.gamelib.core.ShaderProgram;
-import com.gamelib.core.Shape;
-import com.gamelib.primitives.Axis;
-import com.gamelib.primitives.Circle;
-import com.gamelib.primitives.Cone;
-import com.gamelib.primitives.Cube;
-import com.gamelib.primitives.Cylinder;
-import com.gamelib.primitives.Grid;
-import com.gamelib.primitives.Sphere;
+import com.asymptote.gamelib.core.GameWindow;
+import com.asymptote.gamelib.core.Camera;
+import com.asymptote.gamelib.core.ShaderProgram;
+import com.asymptote.gamelib.core.Shape;
+import com.asymptote.gamelib.primitives.Axis;
+import com.asymptote.gamelib.primitives.Circle;
+import com.asymptote.gamelib.primitives.Cone;
+import com.asymptote.gamelib.primitives.Cube;
+import com.asymptote.gamelib.primitives.Cylinder;
+import com.asymptote.gamelib.primitives.Grid;
+import com.asymptote.gamelib.primitives.Sphere;
 
 import static org.lwjgl.opengl.GL11.*;
 import static java.lang.Math.*;

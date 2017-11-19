@@ -1,12 +1,12 @@
-package skyroads;
+package com.asymptote.skyroads;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 
-import com.gamelib.core.Shape;
-import com.gamelib.core.Vertex;
+import com.asymptote.gamelib.core.Shape;
+import com.asymptote.gamelib.core.Vertex;
 
 public class FrameQuad extends Shape
 {

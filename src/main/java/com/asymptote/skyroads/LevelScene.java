@@ -1,9 +1,9 @@
-package skyroads;
+package com.asymptote.skyroads;
 
 import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
 import static org.lwjgl.opengl.GL11.GL_DEPTH_BUFFER_BIT;
 import static org.lwjgl.opengl.GL11.glClear;
-import static com.gamelib.core.Utils.*;
+import static com.asymptote.gamelib.core.Utils.*;
 
 import java.util.Arrays;
 import java.util.IllegalFormatCodePointException;
@@ -11,10 +11,10 @@ import java.util.List;
 
 import org.lwjgl.input.Keyboard;
 
-import com.gamelib.core.Camera;
-import com.gamelib.core.FrameBuffer;
-import com.gamelib.core.Shader;
-import com.gamelib.core.ShaderProgram;
+import com.asymptote.gamelib.core.Camera;
+import com.asymptote.gamelib.core.FrameBuffer;
+import com.asymptote.gamelib.core.Shader;
+import com.asymptote.gamelib.core.ShaderProgram;
 
 public class LevelScene extends Scene
 {

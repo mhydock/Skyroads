@@ -1,6 +1,6 @@
-package skyroads;
+package com.asymptote.skyroads;
 
-import com.gamelib.core.GameObject;
+import com.asymptote.gamelib.core.GameObject;
 
 public abstract class Scene extends GameObject
 {

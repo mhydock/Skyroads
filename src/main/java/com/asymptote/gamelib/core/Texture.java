@@ -8,12 +8,12 @@
 // File description:	An abstract class for loading/binding textures.
 //==============================================================================
 
-package com.gamelib.core;
+package com.asymptote.gamelib.core;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL13.*;
 
-import static com.gamelib.core.Utils.*;
+import static com.asymptote.gamelib.core.Utils.*;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -30,6 +30,7 @@ public abstract class Texture implements IGLObject
 
 	protected int width;
 	protected int height;
+	protected int components;
 	
 	public int width()
 	{
@@ -39,6 +40,11 @@ public abstract class Texture implements IGLObject
 	public int height()
 	{
 		return height;
+	}
+	
+	public int components()
+	{
+		return components;
 	}
 	
 	public int texID()

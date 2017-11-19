@@ -1,4 +1,4 @@
-package com.gamelib.primitives;
+package com.asymptote.gamelib.primitives;
 
 
 public class Cylinder extends Circular

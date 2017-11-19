@@ -1,4 +1,4 @@
-package skyroads;
+package com.asymptote.skyroads;
 
 import java.util.Arrays;
 
@@ -11,8 +11,8 @@ import org.lwjgl.opengl.GL31;
 
 import static java.lang.Math.*;
 
-import com.gamelib.core.Shape;
-import com.gamelib.core.Vertex;
+import com.asymptote.gamelib.core.Shape;
+import com.asymptote.gamelib.core.Vertex;
 
 public class RadialMeter extends Shape
 {

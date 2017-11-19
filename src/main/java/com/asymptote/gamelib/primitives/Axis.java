@@ -1,13 +1,13 @@
-package com.gamelib.primitives;
+package com.asymptote.gamelib.primitives;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 
-import com.gamelib.core.Camera;
-import com.gamelib.core.Shape;
-import com.gamelib.core.Vertex;
+import com.asymptote.gamelib.core.Camera;
+import com.asymptote.gamelib.core.Shape;
+import com.asymptote.gamelib.core.Vertex;
 
 public class Axis extends Shape
 {

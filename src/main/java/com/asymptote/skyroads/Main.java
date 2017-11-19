@@ -1,4 +1,4 @@
-package skyroads;
+package com.asymptote.skyroads;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL13.GL_MULTISAMPLE;
@@ -13,11 +13,11 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.GLU;
 
-import com.gamelib.core.Clock;
-import com.gamelib.core.GameWindow;
-import com.gamelib.core.Shape;
-import com.gamelib.primitives.Axis;
-import com.gamelib.primitives.Grid;
+import com.asymptote.gamelib.core.Clock;
+import com.asymptote.gamelib.core.GameWindow;
+import com.asymptote.gamelib.core.Shape;
+import com.asymptote.gamelib.primitives.Axis;
+import com.asymptote.gamelib.primitives.Grid;
 
 public class Main extends GameWindow
 {

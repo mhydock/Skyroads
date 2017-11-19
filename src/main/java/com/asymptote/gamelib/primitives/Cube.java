@@ -1,6 +1,6 @@
-package com.gamelib.primitives;
+package com.asymptote.gamelib.primitives;
 
-import com.gamelib.core.Shape;
+import com.asymptote.gamelib.core.Shape;
 
 public class Cube extends Shape
 {

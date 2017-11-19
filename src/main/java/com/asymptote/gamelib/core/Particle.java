@@ -9,7 +9,7 @@
 //                      color, velocity, lifetime, and a delay.
 //==============================================================================
 
-package com.gamelib.core;
+package com.asymptote.gamelib.core;
 
 public class Particle extends GameObject implements IGLObject
 {
