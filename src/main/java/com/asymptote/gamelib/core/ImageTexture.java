@@ -13,8 +13,13 @@ package com.asymptote.gamelib.core;
 
 import java.io.*;
 import java.nio.*;
+import java.nio.channels.*;
+import java.nio.file.*;
 
-import static org.lwjgl.demo.util.IOUtil.*;
+import org.lwjgl.*;
+import org.lwjgl.system.MemoryStack;
+
+import static org.lwjgl.BufferUtils.*;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL13.*;
@@ -28,7 +33,7 @@ import static org.lwjgl.system.MemoryUtil.*;
 
 public class ImageTexture extends Texture
 {	
-	private final ByteBuffer image;
+	private ByteBuffer image;
 	
 	@SuppressWarnings("unused")
 	private ImageTexture()
@@ -36,7 +41,13 @@ public class ImageTexture extends Texture
 	
 	public ImageTexture(String filePath)
 	{
-		loadImage(filePath);
+		try
+		{
+			loadImage(filePath);
+		} catch (IOException ex)
+		{
+			System.out.println("Unable to load \"" + filePath + "\" : " + ex.getMessage());
+		}
 	}
 	
 	public ImageTexture(int width, int height, int components, ByteBuffer imgData)
@@ -44,32 +55,28 @@ public class ImageTexture extends Texture
 		loadImage(width, height, components, imgData);
 	}
 	
-	public void loadImage(String filePath)
+	public void loadImage(String filePath) throws IOException
 	{
 		ByteBuffer imageBuffer = ioResourceToByteBuffer(filePath, 8 * 1024);
 		int width = 0, 
 			height = 0,
 			components = 0;
 
-		try (MemoryStack stack = stackPush()) {
+		try (MemoryStack stack = stackPush())
+		{
             IntBuffer w    = stack.mallocInt(1);
             IntBuffer h    = stack.mallocInt(1);
             IntBuffer comp = stack.mallocInt(1);
 
-            // Use info to read image metadata without decoding the entire image.
-            // We don't need this for this demo, just testing the API.
-            if (!stbi_info_from_memory(imageBuffer, w, h, comp)) {
+			if (!stbi_info_from_memory(imageBuffer, w, h, comp))
+			{
                 throw new RuntimeException("Failed to read image information: " + stbi_failure_reason());
-            }
-
-            System.out.println("Image width: " + w.get(0));
-            System.out.println("Image height: " + h.get(0));
-            System.out.println("Image components: " + comp.get(0));
-            System.out.println("Image HDR: " + stbi_is_hdr_from_memory(imageBuffer));
-
+			}
+			
             // Decode the image
             image = stbi_load_from_memory(imageBuffer, w, h, comp, 0);
-            if (image == null) {
+			if (image == null)
+			{
                 throw new RuntimeException("Failed to load image: " + stbi_failure_reason());
             }
 
@@ -128,4 +135,45 @@ public class ImageTexture extends Texture
 		// TODO Auto-generated method stub
 		
 	}
+
+	/***
+	 * Largely copied from https://github.com/LWJGL/lwjgl3/blob/master/modules/core/src/test/java/org/lwjgl/demo/util/IOUtil.java
+	 * Don't much like the look of it. I'll retool it someday...
+	 */
+	private static ByteBuffer ioResourceToByteBuffer(String resource, int bufferSize) throws IOException
+	{
+        ByteBuffer buffer;
+
+        Path path = Paths.get(resource);
+		if (Files.isReadable(path))
+		{
+			try (SeekableByteChannel fc = Files.newByteChannel(path))
+			{
+                buffer = BufferUtils.createByteBuffer((int)fc.size() + 1);
+                while (fc.read(buffer) != -1) { ; }
+            }
+		}
+		else
+		{
+            try (InputStream source = ImageTexture.class.getClassLoader().getResourceAsStream(resource);
+				 ReadableByteChannel rbc = Channels.newChannel(source))
+			{
+                buffer = BufferUtils.createByteBuffer(bufferSize);
+
+				while (rbc.read(buffer) != -1)
+				{
+					if (buffer.remaining() == 0)
+					{
+						ByteBuffer oldBuffer = buffer;
+						buffer = BufferUtils.createByteBuffer(oldBuffer.capacity() * 3 / 2);
+						oldBuffer.flip();
+						buffer.put(oldBuffer);
+                    }
+                }
+            }
+        }
+
+        buffer.flip();
+        return buffer.slice();
+    }
 }
