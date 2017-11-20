@@ -9,14 +9,14 @@ import java.util.Arrays;
 import java.util.IllegalFormatCodePointException;
 import java.util.List;
 
-import org.lwjgl.input.Keyboard;
-
 import com.asymptote.gamelib.core.Camera;
 import com.asymptote.gamelib.core.FrameBuffer;
+import com.asymptote.gamelib.core.Input;
+import com.asymptote.gamelib.core.Scene;
 import com.asymptote.gamelib.core.Shader;
 import com.asymptote.gamelib.core.ShaderProgram;
 
-public class LevelScene extends Scene
+public class LevelScene implements Scene
 {
 	private static final float C_DIST_OFFSET = -25;
 	private static final float C_ALT_OFFSET = 20;
@@ -38,7 +38,9 @@ public class LevelScene extends Scene
 	private float deltaDist;	
 	
 	private boolean isFinished;
-	
+	private int width;
+	private int height;
+
 	public LevelScene(int width, int height)
 	{		
 		this.width = width;
@@ -54,6 +56,16 @@ public class LevelScene extends Scene
 		
 		hud = new LevelSceneUI(width, height);
 	}
+
+	public int width()
+	{
+		return this.width;
+	}
+
+	public int height()
+	{
+		return this.height;
+	}
 	
 	public void resize(int width, int height)
 	{
@@ -61,33 +73,32 @@ public class LevelScene extends Scene
 		fbo = new FrameBuffer(width, height, true);
 	}
 	
-	public void keyInput(int key, boolean pressed)
+	public void handleInput(Input input, boolean active)
 	{
-		if (key == Keyboard.KEY_LEFT)
-			ship.moveLeft(pressed);
-		if (key == Keyboard.KEY_RIGHT)
-			ship.moveRight(pressed);
-		if (key == Keyboard.KEY_UP)
-			ship.accelerate(pressed);
-		if (key == Keyboard.KEY_DOWN)
-			ship.decelerate(pressed);
+		if (input == Input.LEFT)
+			ship.moveLeft(active);
+		if (input == Input.RIGHT)
+			ship.moveRight(active);
+		if (input == Input.UP)
+			ship.accelerate(active);
+		if (input == Input.DOWN)
+			ship.decelerate(active);
 		
-		if (key == Keyboard.KEY_SPACE)
+		if (input == Input.JUMP)
 		{
-			if (pressed)
+			if (active)
 				ship.thrust();
 			
-			if (!pressed)
+			if (!active)
 				ship.rising(false);
 		}
 		
-		
-		if (key == Keyboard.KEY_F9 && pressed)
+		if (input == Input.RESTART && active)
 		{
 			reset();
 			ship.setPosition(level.getStart());
 		}
-		if (key == Keyboard.KEY_RETURN && pressed)
+		if (input == Input.RESET && active)
 		{
 			reset();
 			ship.setPosition(0,0,10);
