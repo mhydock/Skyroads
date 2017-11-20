@@ -1,20 +1,20 @@
 package com.asymptote.skyroads;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.lwjgl.glfw.GLFW;
+import org.lwjgl.opengl.GL11;
+
+import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL13.GL_MULTISAMPLE;
 import static org.lwjgl.opengl.GL31.GL_PRIMITIVE_RESTART;
 import static org.lwjgl.opengl.GL32.GL_PROGRAM_POINT_SIZE;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.lwjgl.glfw.GLFW;
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.util.glu.GLU;
-
 import com.asymptote.gamelib.core.Clock;
 import com.asymptote.gamelib.core.GameWindow;
+import com.asymptote.gamelib.core.Input;
 import com.asymptote.gamelib.core.Shape;
 import com.asymptote.gamelib.primitives.Axis;
 import com.asymptote.gamelib.primitives.Grid;
@@ -23,7 +23,6 @@ public class Main extends GameWindow
 {
 	private LevelScene scene;
 	
-	private List<Shape> shapes;
 	private Level level;
 	private Ship ship;
 	
@@ -43,7 +42,7 @@ public class Main extends GameWindow
 		
 		int error = GL11.glGetError();
 		if (error != GL11.GL_NO_ERROR)
-			System.out.println("Error while initializing graphics context: " + GLU.gluErrorString(error));
+			System.out.println("Error while initializing graphics context: " + error);
 		
 		this.title = "SkyRoads";
 		this.showFPS(true);
@@ -79,10 +78,20 @@ public class Main extends GameWindow
     @Override
     protected void keyCallback(int key, int scancode, int action, int mods)
     {
-        if (key == GLFW.GLFW_KEY_ESCAPE)
+        if (key == GLFW.GLFW_KEY_F10)
             stop();
-        
-        scene.keyInput(key, action != GLFW.GLFW_RELEASE);        
+		
+		Input input = key == GLFW_KEY_UP ? Input.UP : 
+					  key == GLFW_KEY_LEFT ? Input.LEFT :
+					  key == GLFW_KEY_DOWN ? Input.DOWN :
+					  key == GLFW_KEY_RIGHT ? Input.RIGHT :
+					  key == GLFW_KEY_SPACE ? Input.JUMP :
+					  key == GLFW_KEY_E ? Input.RESET :
+					  key == GLFW_KEY_R ? Input.RESTART :
+					  key == GLFW_KEY_ENTER ? Input.ACCEPT :
+					  key == GLFW_KEY_ESCAPE ? Input.CANCEL : Input.NONE;
+
+ 		scene.handleInput(input, action != GLFW.GLFW_RELEASE);        
     }
 
     @Override

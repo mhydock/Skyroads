@@ -10,5 +10,6 @@ public enum Input {
     RESTART,
     CANCEL,
     ACCEPT,
-    QUIT
+    QUIT,
+    NONE,
 }

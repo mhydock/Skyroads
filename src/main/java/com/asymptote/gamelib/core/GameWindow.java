@@ -104,8 +104,8 @@ public abstract class GameWindow
  
         // Configure our window
         glfwDefaultWindowHints();
-        //glfwWindowHint(GLFW_VERSION_MAJOR, 3);
-        //glfwWindowHint(GLFW_VERSION_MINOR, 2);
+        glfwWindowHint(GLFW_VERSION_MAJOR, 3);
+        glfwWindowHint(GLFW_VERSION_MINOR, 2);
         glfwWindowHint(GLFW_VISIBLE, GL_FALSE); // the window will stay hidden after creation
         glfwWindowHint(GLFW_RESIZABLE, resizable ? GL_TRUE : GL_FALSE); // the window will be resizable
  
@@ -135,43 +135,23 @@ public abstract class GameWindow
     private void initCallbacks()
     {
         // Setup a key callback. It will be called every time a key is pressed, repeated or released.
-        glfwSetKeyCallback(window, keyCallback = new GLFWKeyCallback()
-        {
-            @Override
-            public void invoke(long window, int key, int scancode, int action, int mods)
-            {
+        glfwSetKeyCallback(window, (long window, int key, int scancode, int action, int mods) -> {
                 keyCallback(key, scancode, action, mods);
-            }
         });
         
         // Setup a mouse button callback. It will be called every time a mouse button is pressed, repeated or released.      
-        glfwSetMouseButtonCallback(window, mouseCallback = new GLFWMouseButtonCallback()
-        {
-            @Override
-            public void invoke(long window, int button, int action, int mods)
-            {
+        glfwSetMouseButtonCallback(window, (long window, int button, int action, int mods) -> {
                 mouseCallback(button, action, mods);                
-            }            
         });
         
         // Setup a cursor position callback. It will be called every time the cursor is moved.
-        glfwSetCursorPosCallback(window, cursorCallback = new GLFWCursorPosCallback()
-        {
-            @Override
-            public void invoke(long window, double xpos, double ypos)
-            {
+        glfwSetCursorPosCallback(window, (long window, double xpos, double ypos) -> {
                 cursorCallback(xpos, ypos);
-            }            
         });
         
         // Setup a window resize callback. It will be called every time the window is resized.
-        glfwSetWindowSizeCallback(window, resizeCallback = new GLFWWindowSizeCallback()
-        {            
-            @Override
-            public void invoke(long window, int width, int height)
-            {
+        glfwSetWindowSizeCallback(window, (long window, int width, int height) -> {
                 resizeCallback(width, height);                
-            }
         });
 
         debugProc = GLUtil.setupDebugMessageCallback();        
