@@ -33,7 +33,7 @@ import org.joml.Matrix4f;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
 	
-public abstract class Shape extends GameObject implements IGLObject
+public abstract class Shape implements GameObject, IGLObject
 {
 	public static final float[] DEFAULT_COLOR = {0.5f,0.5f,0.5f,1.0f};
 	

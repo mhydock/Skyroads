@@ -1,20 +1,22 @@
-package com.asymptote.skyroads;
+package com.asymptote.gamelib.core;
 
 import com.asymptote.gamelib.core.GameObject;
+import com.asymptote.gamelib.core.Input;
 
-public abstract class Scene extends GameObject
+public interface Scene extends GameObject
 {
-	protected int width;
-	protected int height;
-	
-	public abstract void startScene();	
-	
-	public abstract void resize(int width, int height);
+	int width();
 
-	public abstract void keyInput(int key, boolean pressed);
+	int height();
 	
-	public abstract void update(double delta);
-	
-	public abstract void render();
+	void startScene();	
+
+	void resize(int width, int height);
+
+	void handleInput(Input input, boolean active);
+
+	void update(double delta);
+
+	void render();
 
 }

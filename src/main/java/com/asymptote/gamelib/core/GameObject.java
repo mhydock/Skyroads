@@ -10,9 +10,9 @@
 
 package com.asymptote.gamelib.core;
 
-public abstract class GameObject
+public interface GameObject
 {
-	public abstract void update(double delta);
+	void update(double delta);
 	
-	public abstract void render();
+	void render();
 }
