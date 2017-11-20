@@ -11,7 +11,7 @@
 
 package com.asymptote.gamelib.core;
 
-public class Particle extends GameObject implements IGLObject
+public class Particle implements GameObject, IGLObject
 {
 	private float[] xyzw = new float[4];
 	private float[] rgba = new float[4];

@@ -1,4 +1,4 @@
-package com.asymptote.skyroads;
+package com.asymptote.gamelib.primitives;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;

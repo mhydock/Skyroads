@@ -10,7 +10,7 @@ import com.asymptote.gamelib.core.Shape;
 import com.asymptote.gamelib.primitives.Cube;
 import com.asymptote.gamelib.primitives.PointCloud;
 
-public class Ship extends GameObject
+public class Ship implements GameObject
 {
 	Shape mesh = new Cube().setScale(2, 2, 2).setOrigin(-1f, -1f, 0);
 

@@ -15,6 +15,7 @@ import com.asymptote.gamelib.core.Input;
 import com.asymptote.gamelib.core.Scene;
 import com.asymptote.gamelib.core.Shader;
 import com.asymptote.gamelib.core.ShaderProgram;
+import com.asymptote.gamelib.primitives.FrameQuad;
 
 public class LevelScene implements Scene
 {
