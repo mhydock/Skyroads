@@ -106,12 +106,12 @@ public class Camera
 		
 		proj = new Matrix4f();
 		
-		proj.m00 = x_scale;
-		proj.m11 = y_scale;
-		proj.m22 = -zp/zm;
-		proj.m23 = -1;
-		proj.m32 = -(2*zFar*zNear)/zm;
-		proj.m33 = 0;
+		proj.m00(x_scale);
+		proj.m11(y_scale);
+		proj.m22(-zp/zm);
+		proj.m23(-1);
+		proj.m32(-(2*zFar*zNear)/zm);
+		proj.m33(0);
 		
 		projChanged = true;
 		
@@ -212,17 +212,17 @@ public class Camera
 		// obtain and normalize the new y-axis.
 		right.cross(forward, up);
 		
-		orient.m00 = right.x;
-		orient.m10 = right.y;
-		orient.m20 = right.z;
+		orient.m00(right.x);
+		orient.m10(right.y);
+		orient.m20(right.z);
 		
-		orient.m01 = up.x;
-		orient.m11 = up.y;
-		orient.m21 = up.z;
+		orient.m01(up.x);
+		orient.m11(up.y);
+		orient.m21(up.z);
 		
-		orient.m02 = -forward.x;
-		orient.m12 = -forward.y;
-		orient.m22 = -forward.z;
+		orient.m02(-forward.x);
+		orient.m12(-forward.y);
+		orient.m22(-forward.z);
 		
 		/*
 		//System.out.println(forward.toString() + "\n" + up.toString() + "\n" + right.toString());

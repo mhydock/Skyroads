@@ -13,7 +13,7 @@ package com.asymptote.gamelib.core;
 
 import java.nio.ByteBuffer;
 
-import org.lwjgl.Version;
+import org.lwjgl.*;
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
 import org.lwjgl.system.*;
@@ -21,6 +21,7 @@ import org.lwjgl.system.*;
 import static org.lwjgl.glfw.Callbacks.*;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.system.MemoryUtil.*;
 
 import com.asymptote.gamelib.core.Clock;
 
@@ -83,13 +84,6 @@ public abstract class GameWindow
             
             init();
             loop();
- 
-            // Release window and window callbacks
-            glfwDestroyWindow(window);
-            keyCallback.release();
-            mouseCallback.release();
-            cursorCallback.release();
-            resizeCallback.release();
         }
         finally
         {
