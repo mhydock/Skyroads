@@ -31,8 +31,11 @@ public abstract class GameWindow
 	public final int DEFAULT_HEIGHT = 480;
 	
 	private int width = DEFAULT_WIDTH;
-	private int height = DEFAULT_HEIGHT;
+    private int height = DEFAULT_HEIGHT;
+    private int fbWidth = width;
+    private int fbHeight = height;
     private boolean resizable;
+    private boolean windowed = true;    
 	
 	private double fps;
 	private double ups;
@@ -58,14 +61,10 @@ public abstract class GameWindow
     private boolean running;
 
     // We need to strongly reference callback instances.
-    private GLFWKeyCallback keyCallback;
-    private GLFWCursorPosCallback cursorCallback;
-    private GLFWMouseButtonCallback mouseCallback;
-    private GLFWWindowSizeCallback resizeCallback;
     private Callback debugProc;
     
     public GameWindow()
-    {        
+    {
     }
     
     public GameWindow(int width, int height)
@@ -81,7 +80,7 @@ public abstract class GameWindow
         {
             initOpenGL();
             initCallbacks();
-            
+
             init();
             loop();
         }
@@ -104,18 +103,24 @@ public abstract class GameWindow
  
         // Configure our window
         glfwDefaultWindowHints();
-        glfwWindowHint(GLFW_VERSION_MAJOR, 3);
-        glfwWindowHint(GLFW_VERSION_MINOR, 2);
-        glfwWindowHint(GLFW_VISIBLE, GL_FALSE); // the window will stay hidden after creation
-        glfwWindowHint(GLFW_RESIZABLE, resizable ? GL_TRUE : GL_FALSE); // the window will be resizable
- 
-        // Create the window
-        window = glfwCreateWindow(width, height, title, NULL, NULL);
-        if ( window == NULL )
-            throw new RuntimeException("Failed to create the GLFW window"); 
- 
+        glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
+        glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+        glfwWindowHint(GLFW_SAMPLES, 4);
+
         // Get the resolution of the primary monitor
-        GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+        long monitor = glfwGetPrimaryMonitor();
+        GLFWVidMode vidmode = glfwGetVideoMode(monitor);
+        if (!windowed) {
+            width = vidmode.width();
+            height = vidmode.height();
+            fbWidth = width;
+            fbHeight = height;
+        }
+
+        window = glfwCreateWindow(width, height, title, !windowed ? monitor : 0L, NULL);
+        if (window == NULL) {
+            throw new AssertionError("Failed to create the GLFW window");
+        }
 
         // Center our window
         glfwSetWindowPos(
@@ -134,6 +139,20 @@ public abstract class GameWindow
 	
     private void initCallbacks()
     {
+        glfwSetFramebufferSizeCallback(window, (long window, int width, int height) -> {
+                if (width > 0 && height > 0 && (this.fbWidth != width || this.fbHeight != height)) {
+                    this.fbWidth = width;
+                    this.fbHeight = height;
+                }
+        });
+
+        glfwSetWindowSizeCallback(window, (long window, int width, int height) -> {
+                if (width > 0 && height > 0 && (this.width != width || this.height != height)) {
+                    this.width = width;
+                    this.height = height;
+                }
+        });
+
         // Setup a key callback. It will be called every time a key is pressed, repeated or released.
         glfwSetKeyCallback(window, (long window, int key, int scancode, int action, int mods) -> {
                 keyCallback(key, scancode, action, mods);
@@ -189,7 +208,7 @@ public abstract class GameWindow
         // Make the window visible
         glfwShowWindow(window);
         
-        glViewport(0, 0, width, height);
+        glViewport(0, 0, fbWidth, fbHeight);
         
         glEnable(GL_DEPTH_TEST);
         glDepthFunc(GL_LESS);

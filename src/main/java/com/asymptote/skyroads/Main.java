@@ -28,26 +28,15 @@ public class Main extends GameWindow
 	
 	public Main()
 	{
-		//Clock.setGoalFPS(30);
-		
-		init();
-		
-		glEnable(GL_BLEND);
-		glEnable(GL_MULTISAMPLE);
-		glEnable(GL_PROGRAM_POINT_SIZE);
-		glEnable(GL_PRIMITIVE_RESTART);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-		glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-		
-		int error = GL11.glGetError();
-		if (error != GL11.GL_NO_ERROR)
-			System.out.println("Error while initializing graphics context: " + error);
+		Clock.setGoalFPS(30);
 		
 		this.title = "SkyRoads";
 		this.showFPS(true);
 		this.showUPS(true);
-		
+	}
+
+	private void initGameObjects()
+	{
 		level = Level.loadLevel("res/testlevel");
 		
 		if (level == null)
@@ -71,8 +60,19 @@ public class Main extends GameWindow
 	@Override
     protected void init()
     {
-        // TODO Auto-generated method stub
-        
+		glEnable(GL_BLEND);
+		glEnable(GL_MULTISAMPLE);
+		glEnable(GL_PROGRAM_POINT_SIZE);
+		glEnable(GL_PRIMITIVE_RESTART);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		
+		glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+		
+		int error = GL11.glGetError();
+		if (error != GL11.GL_NO_ERROR)
+			System.out.println("Error while initializing graphics context: " + error);
+
+		initGameObjects();
     }
 
     @Override
