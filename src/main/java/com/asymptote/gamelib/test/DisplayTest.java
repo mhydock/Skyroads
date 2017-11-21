@@ -58,7 +58,7 @@ public class DisplayTest extends GameWindow
 	
 	protected void init()
 	{		
-		prog = new ShaderProgram("src/glsl/basic.vert", "src/glsl/basic.frag");
+		prog = new ShaderProgram("src/main/glsl/basic.vert", "src/main/glsl/basic.frag");
 		
 		camera = new Camera();
 		camera.setFrustum(getWidth(), getHeight(), 60, 0.1f, 20.0f);		// depth buffering borks if zNear == 0

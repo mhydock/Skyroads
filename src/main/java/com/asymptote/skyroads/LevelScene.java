@@ -47,8 +47,8 @@ public class LevelScene implements Scene
 		this.width = width;
 		this.height = height;
 		
-		baseProg = new ShaderProgram("src/glsl/basic.vert", "src/glsl/basic.frag");		
-		textProg = new ShaderProgram("src/glsl/fbo.vert", "src/glsl/texture.frag");
+		baseProg = new ShaderProgram("src/main/glsl/basic.vert", "src/main/glsl/basic.frag");		
+		textProg = new ShaderProgram("src/main/glsl/fbo.vert", "src/main/glsl/texture.frag");
 
 		camera = new Camera();
 		camera.setFrustum(width, height, 60, 0.1f, 500.0f);		// depth buffering borks if zNear == 0

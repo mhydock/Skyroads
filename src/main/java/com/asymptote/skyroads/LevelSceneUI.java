@@ -111,8 +111,8 @@ public class LevelSceneUI extends Shape
 		jumpOutline = new Circle(15, 20, true);
 		jumpOutline.setLocation(0,-height*.45f,1).rotate(90, 1, 0, 0).setColor(OUTLINE);
 		
-		hudProg = new ShaderProgram("src/glsl/sprite.vert", "src/glsl/sprite.frag");
-		fboProg = new ShaderProgram("src/glsl/fbo.vert", "src/glsl/texture.frag");
+		hudProg = new ShaderProgram("src/main/glsl/sprite.vert", "src/main/glsl/sprite.frag");
+		fboProg = new ShaderProgram("src/main/glsl/fbo.vert", "src/main/glsl/texture.frag");
 
 		bgFBO = new FrameBuffer(width,height,true);
 		olFBO = new FrameBuffer(width,height,true);

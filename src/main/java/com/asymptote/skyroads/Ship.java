@@ -50,7 +50,7 @@ public class Ship implements GameObject
 	private List<float[]> front;
 	private List<float[]> back;
 	
-	private ShaderProgram pointShader = new ShaderProgram("src/glsl/points.vert", "src/glsl/points.frag");
+	private ShaderProgram pointShader = new ShaderProgram("src/main/glsl/points.vert", "src/main/glsl/points.frag");
 	private PointCloud collideCloud;
 	
 	public Ship() {	}
