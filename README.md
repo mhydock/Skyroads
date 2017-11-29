@@ -10,10 +10,10 @@ A Java remake of the classic DOS game. Slide and jump your way across the hazard
 * Install Java 8 (or higher)
 * Clone this repository
 * To build the game:
-  * From the repo directory run `gradle build`
+  ** From the repo directory run `gradle build`
 * To run the game:
-  * From the repo directory run `gradle run`
-  * Running `gradle run` will also build 
+  ** From the repo directory run `gradle run`
+  ** Running `gradle run` will also build 
 
 
 ### Contributors
