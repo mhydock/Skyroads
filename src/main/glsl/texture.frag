@@ -1,3 +1,5 @@
+#version 150 core
+
 in vec4 pass_Color;
 in vec2 pass_TexCoord;
 

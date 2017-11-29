@@ -34,14 +34,9 @@ public class FrameBuffer extends Texture
 	private boolean multisampled;
 	
 	public FrameBuffer(int width, int height, boolean multi)
-	{
-		texID = glGenTextures();
-		fboID = glGenFramebuffers();
-		dboID = glGenRenderbuffers();
-		
+	{		
 		this.width = width;
 		this.height = height;
-		
 		this.multisampled = multi;
 		
 		createFBO();
@@ -54,58 +49,58 @@ public class FrameBuffer extends Texture
 	{
 		ByteBuffer buffer = BufferUtils.createByteBuffer(width*height*4);
 
-		glBindFramebuffer(GL_FRAMEBUFFER, fboID);
-
+		texID = glGenTextures();
 		glBindTexture(GL_TEXTURE_2D, texID);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
-		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texID, 0);
-		
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, buffer);		
 		printGlError("Created texture for fbo " + fboID);
 		
+		dboID = glGenRenderbuffers();
 		glBindRenderbuffer(GL_RENDERBUFFER, dboID);
 		glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, width, height);
-		glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, dboID);
-		
 		printGlError("Created render buffer for fbo " + fboID);
 		
-		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+		fboID = glGenFramebuffers();
+		glBindFramebuffer(GL_FRAMEBUFFER, fboID);
+		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texID, 0);		
+		glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, dboID);
+		printGlError("Done binding for fbo " + fboID);		
 		
-		printGlError("Done binding for fbo " + fboID);
-
 		System.out.print("fbo " + fboID + ": ");
 		printFramebufferError();
+
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	}
 	
 	private void createFBO_Multisampled()
 	{
 		m_texID = glGenTextures();
-		m_fboID = glGenFramebuffers();
-		m_dboID = glGenRenderbuffers();
-
-		glBindFramebuffer(GL_FRAMEBUFFER, m_fboID);
-		
 		glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, m_texID);
 		glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, NUM_SAMPLES, GL_RGBA, width, height, false);
-		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D_MULTISAMPLE, m_texID, 0);
-		
 		printGlError("Created multisampled texture for fbo " + m_fboID);
 		
-		glBindRenderbuffer(GL_RENDERBUFFER, m_dboID);
-		glRenderbufferStorageMultisample(GL_RENDERBUFFER, NUM_SAMPLES, GL_DEPTH_COMPONENT24, width, height);
-		glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, m_dboID);
+		System.out.println("texture buffer samples: " + glGetTexLevelParameteri(GL_TEXTURE_2D_MULTISAMPLE, 0, GL_TEXTURE_SAMPLES));
 
-		printGlError("Created multisampled render buffer for fbo " + m_fboID);
+		// m_dboID = glGenRenderbuffers();
+		// glBindRenderbuffer(GL_RENDERBUFFER, m_dboID);
+		// glRenderbufferStorageMultisample(GL_RENDERBUFFER, NUM_SAMPLES, GL_DEPTH_COMPONENT, width, height);
+		// printGlError("Created multisampled render buffer for fbo " + m_fboID);
 		
-		glBindFramebuffer(GL_FRAMEBUFFER, 0);
-		
-		printGlError("Done binding for fbo " + m_fboID);
+		// System.out.println("depth buffer samples: " + glGetRenderbufferParameteri(GL_RENDERBUFFER, GL_RENDERBUFFER_SAMPLES));
 
+		m_fboID = glGenFramebuffers();
+		glBindFramebuffer(GL_FRAMEBUFFER, m_fboID);
+		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D_MULTISAMPLE, m_texID, 0);
+		//glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, m_dboID);
+		printGlError("Done binding for fbo " + m_fboID);				
+		
 		System.out.print("m_fbo " + m_fboID + ": ");
 		printFramebufferError();
+
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	}
 	
 	public void use(boolean enable)
@@ -127,6 +122,8 @@ public class FrameBuffer extends Texture
 				glBindRenderbuffer(GL_RENDERBUFFER, dboID);
 				glBindFramebuffer(GL_FRAMEBUFFER, fboID);
 			}
+			
+			printFramebufferError();			
 		}
 		else
 		{
@@ -135,23 +132,22 @@ public class FrameBuffer extends Texture
 			
 			if (multisampled)
 			{
-				//System.out.println("copy fbo");
-				glBindFramebuffer(GL_DRAW_FRAMEBUFFER, fboID);
 				printGlError("Binding " + fboID + " to Draw buffer");
-				glBindFramebuffer(GL_READ_FRAMEBUFFER, m_fboID);
+				glBindFramebuffer(GL_DRAW_FRAMEBUFFER, fboID);
 				printGlError("Binding " + m_fboID + " to Read buffer");
+				glBindFramebuffer(GL_READ_FRAMEBUFFER, m_fboID);
+				printGlError("Setting buffer attachments");
 				glReadBuffer(GL_COLOR_ATTACHMENT0);
 				glDrawBuffer(GL_COLOR_ATTACHMENT0);
-				printGlError("Setting buffer attachments");
+				printGlError("Attempting buffer blitting");
 				glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 				glBlitFramebuffer(0, 0, width, height, 0, 0, width, height, GL_COLOR_BUFFER_BIT, GL_NEAREST);
-				printGlError("Attempting buffer blitting");
-				glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
 				printGlError("Unbinding Draw buffer");
-				glBindFramebuffer(GL_READ_FRAMEBUFFER, 0);
+				glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
 				printGlError("Unbinding Read buffer");
+				glBindFramebuffer(GL_READ_FRAMEBUFFER, 0);
 			}
-		}	
+		}
 	}
 	
 	@Override
@@ -167,25 +163,32 @@ public class FrameBuffer extends Texture
 	// Check to see if there were any framebuffer errors
 	{
 		int e = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+		String message;
+
+		if(e == GL_FRAMEBUFFER_COMPLETE) {
+			//System.out.println("framebuffer complete");
+			return;
+		}
 		
 		switch(e)
 		{
-			case GL_FRAMEBUFFER_UNSUPPORTED						: System.out.println("format not supported");
+			case GL_FRAMEBUFFER_UNSUPPORTED						: message = "format not supported";
 																  break;
-			case GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT	: System.out.println("missing attachment");
+			case GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT	: message = "missing attachment";
 																  break;
-			case GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT			: System.out.println("incomplete attachment");
+			case GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT			: message = "incomplete attachment";
 																  break;
-			case GL_FRAMEBUFFER_INCOMPLETE_MULTISAMPLE			: System.out.println("incomplete multisample");
+			case GL_FRAMEBUFFER_INCOMPLETE_MULTISAMPLE			: message = "incomplete multisample";
 																  break;
-			case GL_FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER			: System.out.println("missing draw buffer");
+			case GL_FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER			: message = "missing draw buffer";
 																  break;
-			case GL_FRAMEBUFFER_INCOMPLETE_READ_BUFFER			: System.out.println("missing read buffer");
+			case GL_FRAMEBUFFER_INCOMPLETE_READ_BUFFER			: message = "missing read buffer";
 																  break;
-			case GL_FRAMEBUFFER_COMPLETE						: System.out.println("complete");
+			case GL_FRAMEBUFFER_INCOMPLETE_LAYER_TARGETS		: message = "incomplete layer targets";
 																  break;
-			default												: System.out.println("mystery error: " + e);
+			default												: message = "mystery error: " + e;
 																  break;		
 		}
+		throw new RuntimeException("Framebuffer error: " + message);
 	}
 }
