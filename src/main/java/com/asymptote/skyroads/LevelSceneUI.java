@@ -58,18 +58,21 @@ public class LevelSceneUI extends Shape
 	
 	public LevelSceneUI(int width, int height)
 	{
-		this.width = width;
-		this.height = height;
+		float r = (float)width/(float)height;
+
+		this.width = (int)(r*480);
+		this.height = 480;
+		System.out.println(r*480);
 		
 		airBackground = new RadialMeter(-10, 90, 50, 25, SLICES/2, S_GAP, true);
 		fuelBackground = new RadialMeter(190, 90, 50, 25, SLICES/2, S_GAP, true);
 		speedBackground = new RadialMeter(190, -10, 100, 60, SLICES, L_GAP, true);		
 		progressBackground = new RadialMeter(190, -10, 120, 110, PROG_SLICES, 0, true);
 		
-		airBackground.setLocation(0,-height*.45f,-1).setColor(BACKGROUND);
-		fuelBackground.setLocation(0,-height*.45f,-1).setColor(BACKGROUND);
-		speedBackground.setLocation(0,-height*.45f,-1).setColor(BACKGROUND);
-		progressBackground.setLocation(0,-height*.45f,-1).setColor(BACKGROUND);
+		airBackground.setLocation(0, -this.height*.45f, -1).setColor(BACKGROUND);
+		fuelBackground.setLocation(0, -this.height*.45f, -1).setColor(BACKGROUND);
+		speedBackground.setLocation(0, -this.height*.45f, -1).setColor(BACKGROUND);
+		progressBackground.setLocation(0, -this.height*.45f, -1).setColor(BACKGROUND);
 		
 		airBackground.setPercent(1);
 		fuelBackground.setPercent(1);
@@ -81,11 +84,10 @@ public class LevelSceneUI extends Shape
 		speedOutline = new RadialMeter(190, -10, 100, 60, SLICES, L_GAP, false);		
 		progressOutline = new RadialMeter(190, -10, 120, 110, PROG_SLICES, 0, false);
 
-		
-		airOutline.setLocation(0,-height*.45f,1).setColor(OUTLINE);
-		fuelOutline.setLocation(0,-height*.45f,1).setColor(OUTLINE);
-		speedOutline.setLocation(0,-height*.45f,1).setColor(OUTLINE);
-		progressOutline.setLocation(0,-height*.45f,1).setColor(OUTLINE);
+		airOutline.setLocation(0, -this.height*.45f, 1).setColor(OUTLINE);
+		fuelOutline.setLocation(0, -this.height*.45f, 1).setColor(OUTLINE);
+		speedOutline.setLocation(0, -this.height*.45f, 1).setColor(OUTLINE);
+		progressOutline.setLocation(0, -this.height*.45f, 1).setColor(OUTLINE);
 		
 		airOutline.setPercent(1);
 		fuelOutline.setPercent(1);
@@ -97,25 +99,25 @@ public class LevelSceneUI extends Shape
 		speedMeter = new RadialMeter(190, -10, 100, 60, SLICES, L_GAP, true);	
 		progressMeter = new RadialMeter(190, -10, 120, 110, PROG_SLICES, 0, true);
 		
-		airMeter.setLocation(0,-height*.45f,0).setColor(FILL);
-		fuelMeter.setLocation(0,-height*.45f,0).setColor(FILL);
-		speedMeter.setLocation(0,-height*.45f,0).setColor(FILL);
-		progressMeter.setLocation(0,-height*.45f,0).setColor(FILL);
+		airMeter.setLocation(0, -this.height*.45f, 0).setColor(FILL);
+		fuelMeter.setLocation(0, -this.height*.45f, 0).setColor(FILL);
+		speedMeter.setLocation(0, -this.height*.45f, 0).setColor(FILL);
+		progressMeter.setLocation(0, -this.height*.45f, 0).setColor(FILL);
 		
 		canJump = new Circle(15, 20, false);
-		canJump.setLocation(0,-height*.45f,0).rotate(90, 1, 0, 0).setColor(FILL);
+		canJump.setLocation(0, -this.height*.45f, 0).rotate(90, 1, 0, 0).setColor(FILL);
 		
 		cantJump = new Circle(15, 20, false);
-		cantJump.setLocation(0,-height*.45f,-1).rotate(90, 1, 0, 0).setColor(BACKGROUND);
+		cantJump.setLocation(0, -this.height*.45f, -1).rotate(90, 1, 0, 0).setColor(BACKGROUND);
 		
 		jumpOutline = new Circle(15, 20, true);
-		jumpOutline.setLocation(0,-height*.45f,1).rotate(90, 1, 0, 0).setColor(OUTLINE);
+		jumpOutline.setLocation(0, -this.height*.45f, 1).rotate(90, 1, 0, 0).setColor(OUTLINE);
 		
 		hudProg = new ShaderProgram("src/main/glsl/sprite.vert", "src/main/glsl/sprite.frag");
 		fboProg = new ShaderProgram("src/main/glsl/fbo.vert", "src/main/glsl/texture.frag");
 
-		bgFBO = new FrameBuffer(width,height,true);
-		olFBO = new FrameBuffer(width,height,true);
+		bgFBO = new FrameBuffer(width, height, true);
+		olFBO = new FrameBuffer(width, height, true);
 		
 		bgQuad = new FrameQuad();		
 		olQuad = new FrameQuad();		
@@ -193,9 +195,9 @@ public class LevelSceneUI extends Shape
 	private void renderLayers()
 	{
 		hudProg.use();
-		hudProg.setValue("width", (float)width);
-		hudProg.setValue("height", (float)height);
-		
+		hudProg.setValue("width", (float)this.width);
+		hudProg.setValue("height", (float)this.height);
+		System.out.println(width + " : " + height);
 		bgFBO.use(true);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		hudProg.setMatrix("modelMat", airBackground.getModelBuffer());
