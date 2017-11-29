@@ -20,7 +20,7 @@ import com.asymptote.gamelib.primitives.FrameQuad;
 public class LevelScene implements Scene
 {
 	private static final float C_DIST_OFFSET = -25;
-	private static final float C_ALT_OFFSET = 20;
+	private static final float C_ALT_OFFSET = 15;
 	
 	private ShaderProgram baseProg;
 	private ShaderProgram textProg;
