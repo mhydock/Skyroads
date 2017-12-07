@@ -23,7 +23,7 @@ import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 	
-public abstract class Shape extends Transform implements GameObject, IGLObject
+public abstract class Shape extends Transformable implements GameObject, IGLObject
 {
 	public static final float[] DEFAULT_COLOR = {0.5f,0.5f,0.5f,1.0f};
 

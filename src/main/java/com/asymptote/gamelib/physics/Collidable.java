@@ -2,7 +2,7 @@ package com.asymptote.gamelib.core;
 
 import org.joml.Vector3f;
 
-public abstract class Collidable extends Transform {
+public abstract class Collidable extends Transformable {
     private float weight;
     private Vector3f velocity;
     private Vector3f rotVelocity;

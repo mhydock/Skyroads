@@ -8,8 +8,9 @@ import static java.lang.Math.toRadians;
 
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
+import org.joml.Matrix4f;
 
-public abstract class Transform {
+public abstract class Transformable {
     private Vector3f pos = new Vector3f(0, 0, 0);
 	private Vector3f scale = new Vector3f(1, 1, 1);
 	private Vector3f origin = new Vector3f(0, 0, 0);
@@ -23,7 +24,7 @@ public abstract class Transform {
 		return changed;
 	}
 
-	public Transform setScale(float x, float y, float z)
+	public Transformable setScale(float x, float y, float z)
 	{
 		scale.x = x;
 		scale.y = y;
@@ -34,7 +35,7 @@ public abstract class Transform {
 		return this;
 	}
 	
-	public Transform setOrigin(float x, float y, float z)
+	public Transformable setOrigin(float x, float y, float z)
 	{
 		origin.x = x;
 		origin.y = y;
@@ -45,7 +46,7 @@ public abstract class Transform {
 		return this;
 	}
 	
-	public Transform setLocation(float x, float y, float z)
+	public Transformable setLocation(float x, float y, float z)
 	{
 		pos.x = x;
 		pos.y = y;
@@ -56,7 +57,7 @@ public abstract class Transform {
 		return this;
 	}
 		
-	public Transform setOrientation(float angle, float x, float y, float z)
+	public Transformable setOrientation(float angle, float x, float y, float z)
 	{
 		double s = sin(toRadians(angle)/2);
 		
@@ -75,7 +76,7 @@ public abstract class Transform {
 		return this;
 	}
 	
-	public Transform move(float x, float y, float z)
+	public Transformable move(float x, float y, float z)
 	{
 		pos.x += x;
 		pos.y += y;
@@ -86,7 +87,7 @@ public abstract class Transform {
 		return this;
 	}
 	
-	public Transform rotate(float angle, float x, float y, float z)
+	public Transformable rotate(float angle, float x, float y, float z)
 	{
 		double r = toRadians(angle)/2;	// because Math hates degrees
 		double l = sqrt(x*x+y*y+z*z);	// for normalization
@@ -112,7 +113,7 @@ public abstract class Transform {
 		return this;
 	}
 	
-	public Transform resetTransforms()
+	public Transformable resetTransformables()
 	{
 		setOrigin(0, 0, 0);
 		setOrientation(0, 1, 1, 1);
