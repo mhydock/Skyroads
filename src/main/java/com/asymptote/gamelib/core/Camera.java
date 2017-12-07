@@ -8,7 +8,7 @@
 // File description:	A class to manage camera position/orientation.
 //==============================================================================
 
-package com.asymptote.gamelib.graphics;
+package com.asymptote.gamelib.core;
 
 import java.nio.FloatBuffer;
 

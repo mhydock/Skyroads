@@ -1,7 +1,7 @@
-package com.asymptote.gamelib.graphics;
+package com.asymptote.gamelib.core;
 
-import com.asymptote.gamelib.graphics.GameObject;
-import com.asymptote.gamelib.graphics.Input;
+import com.asymptote.gamelib.core.GameObject;
+import com.asymptote.gamelib.core.Input;
 
 public interface Scene extends GameObject
 {
@@ -14,9 +14,4 @@ public interface Scene extends GameObject
 	void resize(int width, int height);
 
 	void handleInput(Input input, boolean active);
-
-	void update(double delta);
-
-	void render();
-
 }

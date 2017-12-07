@@ -1,4 +1,4 @@
-package com.asymptote.gamelib.graphics;
+package com.asymptote.gamelib.core;
 
 import static java.lang.Math.acos;
 import static java.lang.Math.cos;

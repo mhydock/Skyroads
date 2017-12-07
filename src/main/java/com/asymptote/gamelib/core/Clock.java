@@ -9,7 +9,7 @@
 //						frames/updates per second limits.
 //==============================================================================
 
-package com.asymptote.gamelib.graphics;
+package com.asymptote.gamelib.core;
 
 /**
  * Time management static class. All values are expressed as
