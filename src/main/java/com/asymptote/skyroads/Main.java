@@ -12,9 +12,9 @@ import static org.lwjgl.opengl.GL13.GL_MULTISAMPLE;
 import static org.lwjgl.opengl.GL31.GL_PRIMITIVE_RESTART;
 import static org.lwjgl.opengl.GL32.GL_PROGRAM_POINT_SIZE;
 
-import com.asymptote.gamelib.graphics.Clock;
-import com.asymptote.gamelib.graphics.GameWindow;
-import com.asymptote.gamelib.graphics.Input;
+import com.asymptote.gamelib.core.Clock;
+import com.asymptote.gamelib.core.GameWindow;
+import com.asymptote.gamelib.core.Input;
 import com.asymptote.gamelib.graphics.Renderable;
 import com.asymptote.gamelib.primitives.Axis;
 import com.asymptote.gamelib.primitives.Grid;

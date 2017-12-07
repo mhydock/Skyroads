@@ -9,10 +9,10 @@ import java.util.Arrays;
 import java.util.IllegalFormatCodePointException;
 import java.util.List;
 
-import com.asymptote.gamelib.graphics.Camera;
+import com.asymptote.gamelib.core.Camera;
+import com.asymptote.gamelib.core.Input;
+import com.asymptote.gamelib.core.Scene;
 import com.asymptote.gamelib.graphics.FrameBuffer;
-import com.asymptote.gamelib.graphics.Input;
-import com.asymptote.gamelib.graphics.Scene;
 import com.asymptote.gamelib.graphics.Shader;
 import com.asymptote.gamelib.graphics.ShaderProgram;
 import com.asymptote.gamelib.primitives.FrameQuad;
