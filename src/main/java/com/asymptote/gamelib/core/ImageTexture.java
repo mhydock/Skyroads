@@ -9,7 +9,7 @@
 //						data for its texture data.
 //==============================================================================
 
-package com.asymptote.gamelib.core;
+package com.asymptote.gamelib.graphics;
 
 import java.io.*;
 import java.nio.*;

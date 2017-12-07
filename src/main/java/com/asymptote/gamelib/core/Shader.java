@@ -11,7 +11,7 @@
 //						inputs. The active shader is globally accessible.
 //==============================================================================
 
-package com.asymptote.gamelib.core;
+package com.asymptote.gamelib.graphics;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

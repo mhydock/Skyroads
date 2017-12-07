@@ -1,4 +1,4 @@
-package com.asymptote.gamelib.core;
+package com.asymptote.gamelib.graphics;
 
 public enum Input {
     UP,

@@ -8,14 +8,14 @@
 // File description:	A class to provide for rendering to a texture.
 //==============================================================================
 
-package com.asymptote.gamelib.core;
+package com.asymptote.gamelib.graphics;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL12.GL_CLAMP_TO_EDGE;
 import static org.lwjgl.opengl.GL14.*;
 import static org.lwjgl.opengl.GL30.*;
 import static org.lwjgl.opengl.GL32.*;
-import static com.asymptote.gamelib.core.Utils.*;
+import static com.asymptote.gamelib.graphics.Utils.*;
 
 import java.nio.ByteBuffer;
 

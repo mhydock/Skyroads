@@ -10,7 +10,7 @@
 //						load and render vertex data.
 //==============================================================================
 
-package com.asymptote.gamelib.core;
+package com.asymptote.gamelib.graphics;
 
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;

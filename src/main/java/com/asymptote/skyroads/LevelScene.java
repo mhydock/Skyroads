@@ -3,18 +3,18 @@ package com.asymptote.skyroads;
 import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
 import static org.lwjgl.opengl.GL11.GL_DEPTH_BUFFER_BIT;
 import static org.lwjgl.opengl.GL11.glClear;
-import static com.asymptote.gamelib.core.Utils.*;
+import static com.asymptote.gamelib.graphics.Utils.*;
 
 import java.util.Arrays;
 import java.util.IllegalFormatCodePointException;
 import java.util.List;
 
-import com.asymptote.gamelib.core.Camera;
-import com.asymptote.gamelib.core.FrameBuffer;
-import com.asymptote.gamelib.core.Input;
-import com.asymptote.gamelib.core.Scene;
-import com.asymptote.gamelib.core.Shader;
-import com.asymptote.gamelib.core.ShaderProgram;
+import com.asymptote.gamelib.graphics.Camera;
+import com.asymptote.gamelib.graphics.FrameBuffer;
+import com.asymptote.gamelib.graphics.Input;
+import com.asymptote.gamelib.graphics.Scene;
+import com.asymptote.gamelib.graphics.Shader;
+import com.asymptote.gamelib.graphics.ShaderProgram;
 import com.asymptote.gamelib.primitives.FrameQuad;
 
 public class LevelScene implements Scene

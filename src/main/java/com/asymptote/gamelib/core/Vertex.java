@@ -11,7 +11,7 @@
 //						Now supports normals as well.
 //==============================================================================
 
-package com.asymptote.gamelib.core;
+package com.asymptote.gamelib.graphics;
 
 public class Vertex
 {

@@ -3,10 +3,10 @@ package com.asymptote.skyroads;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.asymptote.gamelib.core.GameObject;
-import com.asymptote.gamelib.core.Shader;
-import com.asymptote.gamelib.core.ShaderProgram;
-import com.asymptote.gamelib.core.Renderable;
+import com.asymptote.gamelib.graphics.GameObject;
+import com.asymptote.gamelib.graphics.Shader;
+import com.asymptote.gamelib.graphics.ShaderProgram;
+import com.asymptote.gamelib.graphics.Renderable;
 import com.asymptote.gamelib.primitives.Cube;
 import com.asymptote.gamelib.primitives.PointCloud;
 

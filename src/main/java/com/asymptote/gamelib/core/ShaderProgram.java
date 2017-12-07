@@ -1,4 +1,4 @@
-package com.asymptote.gamelib.core;
+package com.asymptote.gamelib.graphics;
 
 import static org.lwjgl.opengl.GL20.GL_LINK_STATUS;
 import static org.lwjgl.opengl.GL20.GL_VALIDATE_STATUS;

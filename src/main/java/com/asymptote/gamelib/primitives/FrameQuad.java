@@ -5,8 +5,8 @@ import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 
-import com.asymptote.gamelib.core.Renderable;
-import com.asymptote.gamelib.core.Vertex;
+import com.asymptote.gamelib.graphics.Renderable;
+import com.asymptote.gamelib.graphics.Vertex;
 
 public class FrameQuad extends Renderable
 {

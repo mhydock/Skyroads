@@ -9,7 +9,7 @@
 //						functionality, such as a gameloop, frame limiting, etc.
 //==============================================================================
 
-package com.asymptote.gamelib.core;
+package com.asymptote.gamelib.graphics;
 
 import java.nio.ByteBuffer;
 
@@ -23,7 +23,7 @@ import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.*;
 
-import com.asymptote.gamelib.core.Clock;
+import com.asymptote.gamelib.graphics.Clock;
 
 public abstract class GameWindow
 {

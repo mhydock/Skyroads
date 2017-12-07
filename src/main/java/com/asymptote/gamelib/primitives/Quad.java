@@ -1,6 +1,6 @@
 package com.asymptote.gamelib.primitives;
 
-import com.asymptote.gamelib.core.Renderable;
+import com.asymptote.gamelib.graphics.Renderable;
 
 public class Quad extends Renderable
 {

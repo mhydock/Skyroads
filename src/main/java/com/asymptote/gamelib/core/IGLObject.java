@@ -8,7 +8,7 @@
 // File description:	An interface for all objects that use OpenGL.
 //==============================================================================
 
-package com.asymptote.gamelib.core;
+package com.asymptote.gamelib.graphics;
 
 public interface IGLObject
 {

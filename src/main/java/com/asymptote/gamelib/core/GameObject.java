@@ -8,7 +8,7 @@
 // File description:	An abstract class providing stubs for all game objects.
 //==============================================================================
 
-package com.asymptote.gamelib.core;
+package com.asymptote.gamelib.graphics;
 
 public interface GameObject
 {

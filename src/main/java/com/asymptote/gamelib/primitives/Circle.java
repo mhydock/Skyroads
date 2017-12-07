@@ -5,8 +5,8 @@ import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 
-import com.asymptote.gamelib.core.Camera;
-import com.asymptote.gamelib.core.Vertex;
+import com.asymptote.gamelib.graphics.Camera;
+import com.asymptote.gamelib.graphics.Vertex;
 
 public class Circle extends Circular
 {	

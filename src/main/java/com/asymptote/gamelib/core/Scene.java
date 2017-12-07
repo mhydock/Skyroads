@@ -1,7 +1,7 @@
-package com.asymptote.gamelib.core;
+package com.asymptote.gamelib.graphics;
 
-import com.asymptote.gamelib.core.GameObject;
-import com.asymptote.gamelib.core.Input;
+import com.asymptote.gamelib.graphics.GameObject;
+import com.asymptote.gamelib.graphics.Input;
 
 public interface Scene extends GameObject
 {

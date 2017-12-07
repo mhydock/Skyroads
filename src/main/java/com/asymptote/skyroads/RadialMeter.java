@@ -11,8 +11,8 @@ import org.lwjgl.opengl.GL31;
 
 import static java.lang.Math.*;
 
-import com.asymptote.gamelib.core.Renderable;
-import com.asymptote.gamelib.core.Vertex;
+import com.asymptote.gamelib.graphics.Renderable;
+import com.asymptote.gamelib.graphics.Vertex;
 
 public class RadialMeter extends Renderable
 {

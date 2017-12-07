@@ -4,13 +4,13 @@ import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
 import static org.lwjgl.opengl.GL11.GL_DEPTH_BUFFER_BIT;
 import static org.lwjgl.opengl.GL11.glClear;
 
-import com.asymptote.gamelib.core.FrameBuffer;
-import com.asymptote.gamelib.core.ShaderProgram;
-import com.asymptote.gamelib.core.Renderable;
+import com.asymptote.gamelib.graphics.FrameBuffer;
+import com.asymptote.gamelib.graphics.ShaderProgram;
+import com.asymptote.gamelib.graphics.Renderable;
 import com.asymptote.gamelib.primitives.Circle;
 import com.asymptote.gamelib.primitives.FrameQuad;
 
-import static com.asymptote.gamelib.core.Utils.printGlError;
+import static com.asymptote.gamelib.graphics.Utils.printGlError;
 
 public class LevelSceneUI extends Renderable
 {

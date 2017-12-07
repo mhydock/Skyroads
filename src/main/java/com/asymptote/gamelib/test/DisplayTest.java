@@ -7,10 +7,10 @@ import org.lwjgl.glfw.GLFW;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
-import com.asymptote.gamelib.core.GameWindow;
-import com.asymptote.gamelib.core.Camera;
-import com.asymptote.gamelib.core.ShaderProgram;
-import com.asymptote.gamelib.core.Renderable;
+import com.asymptote.gamelib.graphics.GameWindow;
+import com.asymptote.gamelib.graphics.Camera;
+import com.asymptote.gamelib.graphics.ShaderProgram;
+import com.asymptote.gamelib.graphics.Renderable;
 import com.asymptote.gamelib.primitives.Axis;
 import com.asymptote.gamelib.primitives.Circle;
 import com.asymptote.gamelib.primitives.Cone;

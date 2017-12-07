@@ -8,12 +8,12 @@
 // File description:	An abstract class for loading/binding textures.
 //==============================================================================
 
-package com.asymptote.gamelib.core;
+package com.asymptote.gamelib.graphics;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL13.*;
 
-import static com.asymptote.gamelib.core.Utils.*;
+import static com.asymptote.gamelib.graphics.Utils.*;
 
 import java.util.List;
 import java.util.ArrayList;

@@ -4,7 +4,7 @@ import static java.lang.Math.cos;
 import static java.lang.Math.sin;
 import static java.lang.Math.toRadians;
 
-import com.asymptote.gamelib.core.Renderable;
+import com.asymptote.gamelib.graphics.Renderable;
 
 public abstract class Circular extends Renderable
 {

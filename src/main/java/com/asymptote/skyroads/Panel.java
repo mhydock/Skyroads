@@ -1,6 +1,6 @@
 package com.asymptote.skyroads;
 
-import com.asymptote.gamelib.core.Renderable;
+import com.asymptote.gamelib.graphics.Renderable;
 
 public class Panel extends Renderable
 {

@@ -1,6 +1,6 @@
 package com.gamelib.test;
 
-import com.asymptote.gamelib.core.Utils;
+import com.asymptote.gamelib.graphics.Utils;
 import com.asymptote.gamelib.primitives.Cube;
 
 public class SpinningCube extends Cube
