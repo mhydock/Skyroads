@@ -1,8 +1,8 @@
 package com.asymptote.gamelib.primitives;
 
-import com.asymptote.gamelib.core.Shape;
+import com.asymptote.gamelib.core.Renderable;
 
-public class Mesh extends Shape
+public class Mesh extends Renderable
 {
 
 	@Override

@@ -9,10 +9,10 @@ import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 
 import com.asymptote.gamelib.core.Camera;
-import com.asymptote.gamelib.core.Shape;
+import com.asymptote.gamelib.core.Renderable;
 import com.asymptote.gamelib.core.Vertex;
 
-public class PointCloud extends Shape
+public class PointCloud extends Renderable
 {
 	private List<float[]> points;	
 	private boolean dirty;

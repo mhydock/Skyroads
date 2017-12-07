@@ -11,10 +11,10 @@ import org.lwjgl.opengl.GL31;
 
 import static java.lang.Math.*;
 
-import com.asymptote.gamelib.core.Shape;
+import com.asymptote.gamelib.core.Renderable;
 import com.asymptote.gamelib.core.Vertex;
 
-public class RadialMeter extends Shape
+public class RadialMeter extends Renderable
 {
 	private static final short RESET = Short.MAX_VALUE;
 	

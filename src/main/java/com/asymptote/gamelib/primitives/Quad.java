@@ -1,8 +1,8 @@
 package com.asymptote.gamelib.primitives;
 
-import com.asymptote.gamelib.core.Shape;
+import com.asymptote.gamelib.core.Renderable;
 
-public class Quad extends Shape
+public class Quad extends Renderable
 {
 	private static float[] VERTS = {0,1,0,1,
 									0,0,0,1,

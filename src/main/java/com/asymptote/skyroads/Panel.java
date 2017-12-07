@@ -1,8 +1,8 @@
 package com.asymptote.skyroads;
 
-import com.asymptote.gamelib.core.Shape;
+import com.asymptote.gamelib.core.Renderable;
 
-public class Panel extends Shape
+public class Panel extends Renderable
 {
 	private int width;
 	private int height;

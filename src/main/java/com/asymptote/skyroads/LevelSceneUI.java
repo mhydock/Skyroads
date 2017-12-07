@@ -6,13 +6,13 @@ import static org.lwjgl.opengl.GL11.glClear;
 
 import com.asymptote.gamelib.core.FrameBuffer;
 import com.asymptote.gamelib.core.ShaderProgram;
-import com.asymptote.gamelib.core.Shape;
+import com.asymptote.gamelib.core.Renderable;
 import com.asymptote.gamelib.primitives.Circle;
 import com.asymptote.gamelib.primitives.FrameQuad;
 
 import static com.asymptote.gamelib.core.Utils.printGlError;
 
-public class LevelSceneUI extends Shape
+public class LevelSceneUI extends Renderable
 {
 	private static final int SLICES = 30;
 	private static final int PROG_SLICES = 200;

@@ -2,7 +2,7 @@
 // Date Created:		09 April 2014
 // Last Updated:		23 July 2014
 //
-// File name:			Shape.java
+// File name:			Renderable.java
 // Author(s):			M. Matthew Hydock
 //
 // File description:	An abstract class for rendering generic shapes. The base
@@ -23,7 +23,7 @@ import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 	
-public abstract class Shape extends Transformable implements GameObject, IGLObject
+public abstract class Renderable extends Transformable implements GameObject, IGLObject
 {
 	public static final float[] DEFAULT_COLOR = {0.5f,0.5f,0.5f,1.0f};
 
@@ -41,7 +41,7 @@ public abstract class Shape extends Transformable implements GameObject, IGLObje
 	
 	private boolean isFilled;
 	
-	public Shape()
+	public Renderable()
 	{
 		vaoID = GL30.glGenVertexArrays();
 		vboID = GL15.glGenBuffers();
@@ -207,7 +207,7 @@ public abstract class Shape extends Transformable implements GameObject, IGLObje
 		placeInterleavedData(coords, Vertex.TEX_COUNT, Vertex.TEX_OFFSET);
 	}
 	
-	public Shape setStatic(boolean isStatic)
+	public Renderable setStatic(boolean isStatic)
 	{
 		if (isStatic)
 			vertStorageMode = GL15.GL_STATIC_DRAW;
@@ -217,7 +217,7 @@ public abstract class Shape extends Transformable implements GameObject, IGLObje
 		return this;
 	}
 	
-	public Shape setFillMode(boolean isFilled)
+	public Renderable setFillMode(boolean isFilled)
 	{
 		this.isFilled = isFilled;
 		
@@ -229,7 +229,7 @@ public abstract class Shape extends Transformable implements GameObject, IGLObje
 		return isFilled;
 	}
 	
-	public Shape setColor(int color)
+	public Renderable setColor(int color)
 	{
 		// Extract the channels from the int.
 		float a = color & 0xFF;
@@ -246,7 +246,7 @@ public abstract class Shape extends Transformable implements GameObject, IGLObje
 		return setColor(r, g, b, a);
 	}
 	
-	public Shape setColor(float r, float g, float b, float a)
+	public Renderable setColor(float r, float g, float b, float a)
 	{
 		float[] color = new float[numVerts*Vertex.COL_COUNT];
 		
@@ -261,7 +261,7 @@ public abstract class Shape extends Transformable implements GameObject, IGLObje
 		return setColor(color);		
 	}
 	
-	public Shape setColor(float[] color)
+	public Renderable setColor(float[] color)
 	{
 		if (color == null)
 			return setColor(DEFAULT_COLOR);

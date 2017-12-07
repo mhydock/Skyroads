@@ -15,7 +15,7 @@ import static org.lwjgl.opengl.GL32.GL_PROGRAM_POINT_SIZE;
 import com.asymptote.gamelib.core.Clock;
 import com.asymptote.gamelib.core.GameWindow;
 import com.asymptote.gamelib.core.Input;
-import com.asymptote.gamelib.core.Shape;
+import com.asymptote.gamelib.core.Renderable;
 import com.asymptote.gamelib.primitives.Axis;
 import com.asymptote.gamelib.primitives.Grid;
 
@@ -28,6 +28,8 @@ public class Main extends GameWindow
 	
 	public Main()
 	{
+		super(1280, 960);
+		
 		Clock.setGoalFPS(30);
 		
 		this.title = "SkyRoads";
@@ -49,7 +51,7 @@ public class Main extends GameWindow
 		scene.setShip(ship);
 		
 		/*
-		shapes = new ArrayList<Shape>();
+		shapes = new ArrayList<Renderable>();
 		shapes.add(new Axis());
 		shapes.add(new Grid(20, 20, 1, false).setColor(0x00dd00ff));
 		*/
@@ -127,7 +129,7 @@ public class Main extends GameWindow
 	    scene.render();
 		
 		/*
-		for (Shape shape : shapes)
+		for (Renderable shape : shapes)
 			shape.render();
 		*/
 	}

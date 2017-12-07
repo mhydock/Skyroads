@@ -6,10 +6,10 @@ import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 
 import com.asymptote.gamelib.core.Camera;
-import com.asymptote.gamelib.core.Shape;
+import com.asymptote.gamelib.core.Renderable;
 import com.asymptote.gamelib.core.Vertex;
 
-public class Axis extends Shape
+public class Axis extends Renderable
 {
 	private float[] VERTS = {	-1, 0, 0, 1,
 								 1, 0, 0, 1,

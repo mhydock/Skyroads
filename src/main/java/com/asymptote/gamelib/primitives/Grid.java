@@ -6,10 +6,10 @@ import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 
 import com.asymptote.gamelib.core.Camera;
-import com.asymptote.gamelib.core.Shape;
+import com.asymptote.gamelib.core.Renderable;
 import com.asymptote.gamelib.core.Vertex;
 
-public class Grid extends Shape
+public class Grid extends Renderable
 {
 	private final int DEFAULT_ROWS = 1;
 	private final int DEFAULT_COLS = 1;

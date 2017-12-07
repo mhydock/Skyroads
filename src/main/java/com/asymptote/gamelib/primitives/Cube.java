@@ -1,8 +1,8 @@
 package com.asymptote.gamelib.primitives;
 
-import com.asymptote.gamelib.core.Shape;
+import com.asymptote.gamelib.core.Renderable;
 
-public class Cube extends Shape
+public class Cube extends Renderable
 {
 	private final float[] VERTS = {	0,0,0,1,
 									1,0,0,1,

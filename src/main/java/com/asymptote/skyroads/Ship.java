@@ -6,13 +6,13 @@ import java.util.List;
 import com.asymptote.gamelib.core.GameObject;
 import com.asymptote.gamelib.core.Shader;
 import com.asymptote.gamelib.core.ShaderProgram;
-import com.asymptote.gamelib.core.Shape;
+import com.asymptote.gamelib.core.Renderable;
 import com.asymptote.gamelib.primitives.Cube;
 import com.asymptote.gamelib.primitives.PointCloud;
 
 public class Ship implements GameObject
 {
-	Shape mesh = new Cube().setScale(2, 2, 2).setOrigin(-1f, -1f, 0);
+	Renderable mesh = new Cube().setScale(2, 2, 2).setOrigin(-1f, -1f, 0);
 
 	private static float DEFAULT_HORZ_SPEED = 10;
 	private static float DEFAULT_ACCELERATE = 20f;

@@ -10,7 +10,7 @@ import org.joml.Vector3f;
 import com.asymptote.gamelib.core.GameWindow;
 import com.asymptote.gamelib.core.Camera;
 import com.asymptote.gamelib.core.ShaderProgram;
-import com.asymptote.gamelib.core.Shape;
+import com.asymptote.gamelib.core.Renderable;
 import com.asymptote.gamelib.primitives.Axis;
 import com.asymptote.gamelib.primitives.Circle;
 import com.asymptote.gamelib.primitives.Cone;
@@ -26,7 +26,7 @@ public class DisplayTest extends GameWindow
 {
 	private final float ROT_SCALE = 1f;
 
-	private List<Shape> objects = new ArrayList<Shape>();
+	private List<Renderable> objects = new ArrayList<Renderable>();
 	private ShaderProgram prog;
 	private Camera camera;
 	
@@ -340,7 +340,7 @@ public class DisplayTest extends GameWindow
 		if (zoom < 0.000001f)
 			zoom = 0.000001f;
 		
-		for (Shape shape : objects)
+		for (Renderable shape : objects)
 			shape.update(delta);
 	}
 	
@@ -357,7 +357,7 @@ public class DisplayTest extends GameWindow
 		if (zoomIn || zoomOut)
 			camera.scale(zoom, zoom, zoom);
 		
-		for (Shape shape : objects)
+		for (Renderable shape : objects)
 			shape.render();
 		
 		prog.disable();
@@ -368,7 +368,7 @@ public class DisplayTest extends GameWindow
 	{
 		prog.free();
 		
-		for (Shape shape : objects)
+		for (Renderable shape : objects)
 			shape.free();
 	}
 	

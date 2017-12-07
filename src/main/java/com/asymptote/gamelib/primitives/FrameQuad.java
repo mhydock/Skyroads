@@ -5,10 +5,10 @@ import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 
-import com.asymptote.gamelib.core.Shape;
+import com.asymptote.gamelib.core.Renderable;
 import com.asymptote.gamelib.core.Vertex;
 
-public class FrameQuad extends Shape
+public class FrameQuad extends Renderable
 {
 
 	public FrameQuad()
