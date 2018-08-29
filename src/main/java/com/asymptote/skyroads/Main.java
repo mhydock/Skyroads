@@ -28,7 +28,7 @@ public class Main extends GameWindow
 	
 	public Main()
 	{
-		super(1280, 960);
+		super(800, 600);
 		
 		Clock.setGoalFPS(30);
 		
