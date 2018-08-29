@@ -8,7 +8,7 @@ import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 
-import com.asymptote.gamelib.graphics.Camera;
+import com.asymptote.gamelib.core.Camera;
 import com.asymptote.gamelib.graphics.Renderable;
 import com.asymptote.gamelib.graphics.Vertex;
 
@@ -106,7 +106,7 @@ public class PointCloud extends Renderable
 		}
 		
 		Camera c = Camera.getGlobal();		
-		c.setModel(getModel()).use();
+		c.setModelMatrix(getModelMatrix()).use();
 		
 		GL30.glBindVertexArray(getVertArray());
 		GL20.glEnableVertexAttribArray(Vertex.POS_ATTRIB);
@@ -122,6 +122,6 @@ public class PointCloud extends Renderable
 		GL20.glDisableVertexAttribArray(Vertex.TEX_ATTRIB);
 		GL30.glBindVertexArray(0);
 		
-		c.resetModel();
+		c.resetModelMatrix();
 	}
 }

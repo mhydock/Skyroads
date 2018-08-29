@@ -131,7 +131,7 @@ public abstract class Transformable {
 	public Matrix4f getModelMatrix()
 	{
 		if (changed)
-			recalculateModel();
+			recalculateModelMatrix();
 		
 		return model;
 	}

@@ -19,6 +19,8 @@ import org.joml.Vector3f;
 
 import static java.lang.Math.*;
 
+import com.asymptote.gamelib.graphics.ShaderProgram;
+
 public class Camera
 {
 	private static final Vector3f X_AXIS = new Vector3f(1, 0, 0);
@@ -318,7 +320,7 @@ public class Camera
 		return this;
 	}
 	
-	public Camera resetModel()
+	public Camera resetModelMatrix()
 	{
 		model = null;
 		
@@ -327,7 +329,7 @@ public class Camera
 		return this;
 	}
 	
-	public Camera setModel(Matrix4f model)
+	public Camera setModelMatrix(Matrix4f model)
 	{
 		this.model = model;
 		

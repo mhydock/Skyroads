@@ -22,6 +22,8 @@ import java.nio.FloatBuffer;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 
+import com.asymptote.gamelib.core.Camera;
+
 public class ShaderProgram implements IGLObject
 {
 	private static ShaderProgram global;

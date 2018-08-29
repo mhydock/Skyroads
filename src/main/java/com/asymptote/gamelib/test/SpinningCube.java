@@ -1,4 +1,4 @@
-package com.gamelib.test;
+package com.asymptote.gamelib.test;
 
 import com.asymptote.gamelib.graphics.Utils;
 import com.asymptote.gamelib.primitives.Cube;

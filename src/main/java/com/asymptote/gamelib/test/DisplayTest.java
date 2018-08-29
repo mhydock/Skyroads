@@ -1,4 +1,4 @@
-package com.gamelib.test;
+package com.asymptote.gamelib.test;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -7,8 +7,8 @@ import org.lwjgl.glfw.GLFW;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
-import com.asymptote.gamelib.graphics.GameWindow;
-import com.asymptote.gamelib.graphics.Camera;
+import com.asymptote.gamelib.core.GameWindow;
+import com.asymptote.gamelib.core.Camera;
 import com.asymptote.gamelib.graphics.ShaderProgram;
 import com.asymptote.gamelib.graphics.Renderable;
 import com.asymptote.gamelib.primitives.Axis;

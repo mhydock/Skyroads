@@ -324,9 +324,9 @@ public abstract class Renderable extends Transformable implements GameObject, IG
 	{
 		Camera c = Camera.getGlobal();
 		
-		c.setModel(getModelMatrix());
+		c.setModelMatrix(getModelMatrix());
 		c.use();
-		c.resetModel();
+		c.resetModelMatrix();
 				
 		GL30.glBindVertexArray(vaoID);
 		GL20.glEnableVertexAttribArray(Vertex.POS_ATTRIB);
@@ -406,5 +406,40 @@ public abstract class Renderable extends Transformable implements GameObject, IG
 		
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
 		GL30.glBindVertexArray(0);
+	}
+
+	public Renderable setScale(float x, float y, float z)
+	{
+		return (Renderable)super.setScale(x, y, z);
+	}
+	
+	public Renderable setOrigin(float x, float y, float z)
+	{
+		return (Renderable)super.setOrigin(x, y, z);
+	}
+	
+	public Renderable setLocation(float x, float y, float z)
+	{
+		return (Renderable)super.setLocation(x, y, z);
+	}
+		
+	public Renderable setOrientation(float angle, float x, float y, float z)
+	{
+		return (Renderable)super.setOrientation(angle, x, y, z);
+	}
+	
+	public Renderable move(float x, float y, float z)
+	{
+		return (Renderable)super.move(x, y, z);
+	}
+	
+	public Renderable rotate(float angle, float x, float y, float z)
+	{
+		return (Renderable)super.rotate(angle, x, y, z);
+	}
+	
+	public Renderable resetTransformables()
+	{
+		return (Renderable)super.resetTransformables();
 	}
 }

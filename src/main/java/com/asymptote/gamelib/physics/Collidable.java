@@ -1,6 +1,6 @@
 package com.asymptote.gamelib.physics;
 
-import com.asymptote.gamelib.graphics.Transformable;
+import com.asymptote.gamelib.core.Transformable;
 import org.joml.Vector3f;
 
 public abstract class Collidable extends Transformable {
